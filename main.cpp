@@ -8,11 +8,8 @@
 #include "CPointerToImplementation.h"
 #include "CSingleton.h"
 
-#include <thread>
 #include <mutex>
-#include <chrono>
 #include <cstring>
-#include <pthread.h>
 #include <sys/resource.h>
 
 using namespace std;
@@ -77,7 +74,7 @@ int main() {
   t1.join();
   t2.join();
 
-  for (size_t i = 0; i < 99999; ++i) {
+  for (size_t i = 0; i < 9; ++i) {
     cout << "*";
   }
 
