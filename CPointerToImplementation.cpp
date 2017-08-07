@@ -1,9 +1,11 @@
 /*
- * MIT/BSD Redistributable License
- * Author: https://github.com/infojg9
+ * \file      CPointerToImplementation.cpp
+ * \author    https://github.com/infojg9
+ * \brief     An example of the PIMPL Design / Pointer to Implementation.
+ * \copyright MIT/BSD Redistributable License
  */
 
-#include "PointerToImplementation.h"
+#include "CPointerToImplementation.h"
 
 #include <iostream>
 
@@ -16,7 +18,7 @@
 namespace Pimple {
 namespace V1 {
 
-class PointerToImplementation::Impl
+class CPointerToImplementation::Impl
 {
 public:
   Impl() = default;
@@ -37,8 +39,8 @@ double GetElapsed() const;
 #endif
 };
 
-PointerToImplementation::PointerToImplementation(std::string const& name)
-  : m_pImpl(std::make_unique<PointerToImplementation::Impl>())
+CPointerToImplementation::CPointerToImplementation(std::string const& name)
+  : m_pImpl(std::make_unique<CPointerToImplementation::Impl>())
 {
   m_pImpl->mName = name;
 #ifdef _WIN32
@@ -48,7 +50,7 @@ PointerToImplementation::PointerToImplementation(std::string const& name)
 #endif
 }
 
-PointerToImplementation::~PointerToImplementation()
+CPointerToImplementation::~CPointerToImplementation()
 {
   std::cout << m_pImpl->mName << ": consumed : " << m_pImpl->GetElapsed()
             << " secs" << std::endl;
@@ -56,11 +58,11 @@ PointerToImplementation::~PointerToImplementation()
   m_pImpl = nullptr;
 }
 
-PointerToImplementation::ImplPtr&& PointerToImplementation::getImplPtr() {
+CPointerToImplementation::ImplPtr&& CPointerToImplementation::getImplPtr() {
   return std::move(m_pImpl);
 }
 
-double PointerToImplementation::Impl::GetElapsed() const
+double CPointerToImplementation::Impl::GetElapsed() const
 {
 #ifdef _WIN32
   return (GetTickCount() - mStartTime) / 1e3;
@@ -73,7 +75,7 @@ double PointerToImplementation::Impl::GetElapsed() const
 #endif
 }
 
-PointerToImplementation::Impl::~Impl() {
+CPointerToImplementation::Impl::~Impl() {
 }
 
 } /// namespace V1
