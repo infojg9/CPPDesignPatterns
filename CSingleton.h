@@ -13,6 +13,7 @@
 namespace Singleton {
 namespace V1 {
 
+/// \class CSingleton Thread safe Singleton class
 class CSingleton {
 public:
   /// Return the single instance of this class
@@ -29,5 +30,5 @@ public:
   const CSingleton &operator =(const CSingleton &) = delete;
 };
 
-} /// namespace v1
+} /// namespace V1
 } /// namespace Singleton

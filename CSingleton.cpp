@@ -58,5 +58,5 @@ std::thread::id CSingleton::GetThreadId()
   return std::this_thread::get_id();
 }
 
-} /// namespace v1
+} /// namespace V1
 } /// namespace Singleton

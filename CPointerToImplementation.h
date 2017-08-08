@@ -24,12 +24,14 @@
   #include <sys/time.h>
 #endif
 
+#include <iostream>
 #include <string>
 #include <memory>
 
 namespace Pimple {
 namespace V1 {
 
+/// \class CPointerToImplementation Pimple class declaration
 class CPointerToImplementation {
   /// Keeping Impl details out of public header PointerToImplementation
   class Impl;

@@ -18,6 +18,7 @@
 namespace Pimple {
 namespace V1 {
 
+/// \class Private Impl class decoupled implementation, kind of Bridge pattern
 class CPointerToImplementation::Impl
 {
 public:
@@ -46,7 +47,7 @@ CPointerToImplementation::CPointerToImplementation(std::string const& name)
 #ifdef _WIN32
   m_pImpl->mStartTime = GetTickCount();
 #else
-  gettimeofday(&m_pImpl->mStartTime, NULL);
+  gettimeofday(&m_pImpl->mStartTime, nullptr);
 #endif
 }
 
@@ -68,7 +69,7 @@ double CPointerToImplementation::Impl::GetElapsed() const
   return (GetTickCount() - mStartTime) / 1e3;
 #else
   struct timeval end_time;
-  gettimeofday(&end_time, NULL);
+  gettimeofday(&end_time, nullptr);
   double t1 = mStartTime.tv_usec / 1e6 + mStartTime.tv_sec;
   double t2 = end_time.tv_usec / 1e6 + end_time.tv_sec;
   return t2 - t1;

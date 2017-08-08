@@ -9,9 +9,10 @@
 
 Build script output:
 
+
 /opt/clion-2017.1.3/bin/cmake/bin/cmake --build /home/user/ClionProjects/CDesignPatterns/cmake-build-debug --target CDesignPatterns -- -j 2
 Scanning dependencies of target CDesignPatterns
-[ 25%] Building CXX object CMakeFiles/CDesignPatterns.dir/main.cpp.o
+[ 11%] Building CXX object CMakeFiles/CDesignPatterns.dir/main.cpp.o
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 Target: x86_64-linux-gnu
@@ -46,7 +47,7 @@ Compiler executable checksum: bd2b99af5e5a15cbe8347f870009dafe
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/
 COLLECT_GCC_OPTIONS='-v' '-pipe' '-D' 'GENERIC_DELEGATE_ON' '-Wall' '-Wextra' '-Wchkp' '-Wdouble-promotion' '-Wformat=1' '-Werror' '-Wpedantic' '-O0' '-g3' '-ggdb3' '-ftest-coverage' '-fprofile-arcs' '-pthread' '-g' '-std=gnu++14' '-o' 'CMakeFiles/CDesignPatterns.dir/main.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
-[ 50%] Linking CXX executable CDesignPatterns
+[ 22%] Linking CXX executable CDesignPatterns
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
@@ -57,9 +58,8 @@ gcc version 5.4.1 20160904 (Ubuntu 5.4.1-2ubuntu1~16.04)
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/
 COLLECT_GCC_OPTIONS='-v' '-pipe' '-D' 'GENERIC_DELEGATE_ON' '-Wall' '-Wextra' '-Wchkp' '-Wdouble-promotion' '-Wformat=1' '-Werror' '-Wpedantic' '-O0' '-g3' '-ggdb3' '-ftest-coverage' '-fprofile-arcs' '-pthread' '-g' '-o' 'CDesignPatterns' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/cchvRH34.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o CDesignPatterns /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/CDesignPatterns.dir/CPointerToImplementation.cpp.o CMakeFiles/CDesignPatterns.dir/CSingleton.cpp.o CMakeFiles/CDesignPatterns.dir/main.cpp.o -lstdc++ -lm -lgcov -lgcc_s -lgcc -lpthread -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/cc1vwnoi.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o CDesignPatterns /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/CDesignPatterns.dir/CPointerToImplementation.cpp.o CMakeFiles/CDesignPatterns.dir/CSingleton.cpp.o CMakeFiles/CDesignPatterns.dir/CFactoryMaker.cpp.o CMakeFiles/CDesignPatterns.dir/CFactoryMakerConsumer.cpp.o CMakeFiles/CDesignPatterns.dir/CObserverEventGenerator.cpp.o CMakeFiles/CDesignPatterns.dir/CObserverConsumer.cpp.o CMakeFiles/CDesignPatterns.dir/CObserverEventCollector.cpp.o CMakeFiles/CDesignPatterns.dir/main.cpp.o -lstdc++ -lm -lgcov -lgcc_s -lgcc -lpthread -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
 [100%] Built target CDesignPatterns
-
 
 
 =========
@@ -67,15 +67,24 @@ COLLECT_GCC_OPTIONS='-v' '-pipe' '-D' 'GENERIC_DELEGATE_ON' '-Wall' '-Wextra' '-
 Execution output:
 
 
-/home/user/CDesignPatterns/cmake-build-debug/CDesignPatterns
-main ThreadId: ThreadId: 140431100217088140431125894976 executing at priority , Priority: 0, Policy: 020
-ThreadId: 140431100217088 executing at priority 20
-Called by Thread Id: 140431100217088
-
-t1 ThreadId: 140431108609792, Priority: 0, Policy: 0
-t2 ThreadId: 140431100217088, Priority: 0, Policy: 0
-Called by Thread Id: 140431108609792
-*********Hello, World!
-PimpleTestObject1: consumed : 0.000359058 secs
+/home/user/ClionProjects/CDesignPatterns/cmake-build-debug/CDesignPatterns
+main ThreadId: 139898922829632, Priority: 0, Policy: 0
+t1 ThreadId: 139898905544448, Priority: 0, Policy: 0
+t2 ThreadId: 139898897151744, Priority: 0, Policy: 0
+Called by Thread Id: 139898905544448
+ThreadId: 139898897151744 executing at priority 20
+ThreadId: 139898897151744 executing at priority 20
+Called by Thread Id: 139898897151744
+OpenGL Render
+OpenGL Render
+DirectX renderer unregistered
+Notify Event1:
+observer1 Received message 0
+observer2 Received message 0
+Notify Event3:
+observer1 Received message 2
+observer3 Received message 2
+Exiting...
+PimpleTestObject1: consumed : 0.000356913 secs
 
 Process finished with exit code 0
