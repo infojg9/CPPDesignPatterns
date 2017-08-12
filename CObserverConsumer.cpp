@@ -8,16 +8,13 @@
 
 #include "CObserverEventGenerator.h"
 
-#include <map>
-#include <vector>
-
 namespace Observer {
 namespace V1 {
 
 class CObserverConsumer : public CObserverEventGenerator
 {
 public:
-  enum Messages { Event1, Event2, Event3 };
+  enum class Messages { Event1, Event2, Event3 };
 };
 
 } /// namespace V1

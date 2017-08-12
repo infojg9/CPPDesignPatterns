@@ -7,11 +7,8 @@
 
 #include "CSingleton.h"
 
-#include <thread>
 #include <mutex>
-#include <chrono>
 #include <cstring>
-#include <pthread.h>
 #include <sys/resource.h>
 
 namespace Singleton {
@@ -25,10 +22,24 @@ CSingleton& CSingleton::GetInstanceV1()
   return instance;
 }
 
-/// Optimised locking: Double Check Locking Pattern (DCLP)
-CSingleton& CSingleton::GetInstanceV2() {
-  static CSingleton *instance = nullptr;
+/// C++14 required: decltype(auto)
+/// decltype almost always yields the type of a variable or expression without
+/// any modifications. For lvalue expressions of type T other than names,
+/// decltype always reports a type of T& . C++14 supports decltype(auto),
+/// which, like auto, deduces a type from its initializer, but it performs
+/// the type deduction using the decltype rules.
+template<typename Container>
+decltype(auto)
+CSingleton::GetInstanceV2(Container&& containerIns)
+{
+  static CSingleton instance;
+  return std::forward<Container>(instance);
+}
 
+/// Optimised locking: Double Check Locking Pattern (DCLP)
+CSingleton& CSingleton::GetInstanceV3()
+{
+  static CSingleton *instance = nullptr;
   /// Tweaking User Thread with Scheduling and Priority
   sched_param sch;
   int policy;

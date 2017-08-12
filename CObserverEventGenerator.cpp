@@ -10,16 +10,11 @@
 namespace Observer {
 namespace V1 {
 
-CObserverEventGenerator::CObserverEventGenerator() {}
-CObserverEventGenerator::~CObserverEventGenerator() {}
-
-void CObserverEventGenerator::Subscribe(int message, IObserverInterface *observer)
+void CObserverEventGenerator::Subscribe(int message, IObserverInterface* observer)
 {
-  if (observer)
-  {
-    ObserverMap::iterator it = mObservers.find(message);
-    if (it == mObservers.end())
-    {
+  if (observer) {
+    auto it = mObservers.find(message);
+    if (it == mObservers.end()) {
       mObservers[message] = ObserverList();
     }
     mObservers[message].push_back(observer);
@@ -28,19 +23,15 @@ void CObserverEventGenerator::Subscribe(int message, IObserverInterface *observe
 
 void CObserverEventGenerator::Unsubscribe(int message, IObserverInterface *observer)
 {
-  ObserverMap::iterator it = mObservers.find(message);
-  if (it != mObservers.end())
-  {
+  auto it = mObservers.find(message);
+  if (it != mObservers.end()) {
     ObserverList &list = mObservers[message];
     ObserverList::iterator li;
-    for (li = list.begin(); li != list.end();)
-    {
-      if ((*li) == observer)
-      {
+    for (li = list.begin(); li != list.end();) {
+      if ((*li) == observer) {
         list.erase(li);
       }
-      else
-      {
+      else {
         ++li;
       }
     }
@@ -49,13 +40,11 @@ void CObserverEventGenerator::Unsubscribe(int message, IObserverInterface *obser
 
 void CObserverEventGenerator::Notify(int message)
 {
-  ObserverMap::iterator it = mObservers.find(message);
-  if (it != mObservers.end())
-  {
+  auto it = mObservers.find(message);
+  if (it != mObservers.end()) {
     ObserverList &list = mObservers[message];
     ObserverList::iterator li;
-    for (li = list.begin(); li != list.end(); ++li)
-    {
+    for (li = list.begin(); li != list.end(); ++li) {
       (*li)->Update(message);
     }
   }

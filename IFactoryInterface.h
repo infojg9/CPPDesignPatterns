@@ -30,6 +30,7 @@ namespace V1 {
 class IFactoryInterface
 {
 public:
+  IFactoryInterface() = default;
   virtual ~IFactoryInterface() = default;
   virtual bool LoadScene(const std::string &filename) = 0;
   virtual void SetViewportSize(int w, int h) = 0;

@@ -12,6 +12,9 @@
 #include "CObserverEventCollector.cpp"
 #include "CObserverConsumer.cpp"
 
+/// Boost integration
+#include <boost/type_index.hpp>
+
 #include <mutex>
 #include <cstring>
 #include <sys/resource.h>
@@ -36,32 +39,38 @@ __pragma(message("Building on Apple OS:"))
 
 using namespace std;
 
-/// Global function for verifying thread safety of Singleton::V1::CSingleton class
-void singleTonSafeInitV1(uint8_t ucType) {
+/// Global Wrapper api for calling Singleton::V1::CSingleton::GetInstanceVX()
+template<typename Type>
+void singleTonSafeInitV1(Type const& typeId)
+{
+  using boost::typeindex::type_id_with_cvr;
+  cout<<"boost::typeindex Type: "<<type_id_with_cvr<Type>().pretty_name()<<endl;
+  cout<<"boost::typeindex param: "<<type_id_with_cvr<decltype(typeId)>().pretty_name()<<endl;
 
-  switch(ucType) {
+  switch(typeId) {
     case 1: {
       Singleton::V1::CSingleton &obCSingleton1 = Singleton::V1::CSingleton::GetInstanceV1();
-      cout<<"Called by Thread Id: "<<obCSingleton1.GetThreadId()<<endl;
+      cout<<endl<<"Called by Thread Id: "<<obCSingleton1.GetThreadId()<<endl;
       break;
     }
     case 2: {
-      Singleton::V1::CSingleton &obCSingleton2 = Singleton::V1::CSingleton::GetInstanceV2();
-      cout<<"Called by Thread Id: "<<obCSingleton2.GetThreadId()<<endl;
+      Singleton::V1::CSingleton &obCSingleton2 = Singleton::V1::CSingleton::GetInstanceV3();
+      cout<<endl<<"Called by Thread Id: "<<obCSingleton2.GetThreadId()<<endl;
       break;
     }
     default:
-      cout<<"Invalid input: "<<ucType<<endl;
+      cout<<"Error: Invalid input: "<<typeId<<endl;
   }
 }
 
-int main() {
-
+int main()
+{
   /// CPointerToImplementation class test case
   Pimple::V1::CPointerToImplementation obPimple("PimpleTestObject1");
 
   /// Singleton::V1::CSingleton class test case
-  thread t1(singleTonSafeInitV1, 1), t2(singleTonSafeInitV1, 2);
+  thread t1(singleTonSafeInitV1<uint32_t>, 1);
+  thread t2(singleTonSafeInitV1<uint32_t>, 2);
 
   /// Accessing and Tweaking Main User Thread with Scheduling and Priority
   /// for each thread of Singleton::V1::CSingleton
@@ -99,7 +108,6 @@ int main() {
   t1.join();
   t2.join();
 
-
   /// Factory class test cases
   // register the various 3D renderers with the factory object
   Factory::V1::CFactoryMaker::RegisterRenderer("opengl", Factory::V1::COpenGLRenderer::Create);
@@ -134,19 +142,18 @@ int main() {
   Observer::V1::CObserverConsumer obNotifier;
 
   ///Register each observer for CObserverConsumer events
-  obNotifier.Subscribe(Observer::V1::CObserverConsumer::Event1, &observer1);
-  obNotifier.Subscribe(Observer::V1::CObserverConsumer::Event1, &observer2);
-  obNotifier.Subscribe(Observer::V1::CObserverConsumer::Event2, &observer2);
-  obNotifier.Subscribe(Observer::V1::CObserverConsumer::Event3, &observer1);
-  obNotifier.Subscribe(Observer::V1::CObserverConsumer::Event3, &observer3);
+  obNotifier.Subscribe(static_cast<int>(Observer::V1::CObserverConsumer::Messages::Event1), &observer1);
+  obNotifier.Subscribe(static_cast<int>(Observer::V1::CObserverConsumer::Messages::Event1), &observer2);
+  obNotifier.Subscribe(static_cast<int>(Observer::V1::CObserverConsumer::Messages::Event2), &observer2);
+  obNotifier.Subscribe(static_cast<int>(Observer::V1::CObserverConsumer::Messages::Event3), &observer1);
+  obNotifier.Subscribe(static_cast<int>(Observer::V1::CObserverConsumer::Messages::Event3), &observer3);
 
   ///Finally let obNotifier dispatches Event1 and Event3 messages for
   /// observer1 and observer3
   cout << "Notify Event1:" << endl;
-  obNotifier.Notify(Observer::V1::CObserverConsumer::Event1);
+  obNotifier.Notify(static_cast<int>(Observer::V1::CObserverConsumer::Messages::Event1));
   cout << "Notify Event3:" << endl;
-  obNotifier.Notify(Observer::V1::CObserverConsumer::Event3);
-
+  obNotifier.Notify(static_cast<int>(Observer::V1::CObserverConsumer::Messages::Event3));
 
   cout << "Exiting..." <<endl;
   return 0;

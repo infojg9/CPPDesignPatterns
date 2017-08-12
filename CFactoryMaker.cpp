@@ -26,9 +26,8 @@ void CFactoryMaker::UnregisterRenderer(const std::string &type)
 
 IFactoryInterface *CFactoryMaker::CreateRenderer(const std::string &type)
 {
-  CallbackMap::iterator it = mRenderers.find(type);
-  if (it != mRenderers.end())
-  {
+  auto it = mRenderers.find(type);
+  if (it != mRenderers.end()) {
     // call the creation callback to construct this derived type
     return (it->second)();
   }

@@ -32,8 +32,8 @@ namespace Pimple {
 namespace V1 {
 
 /// \class CPointerToImplementation Pimple class declaration
-class CPointerToImplementation {
-  /// Keeping Impl details out of public header PointerToImplementation
+class CPointerToImplementation
+{ /// Keeping Impl details out of public header PointerToImplementation
   class Impl;
   using ImplPtr = std::unique_ptr<Impl>;
 

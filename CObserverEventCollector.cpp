@@ -19,9 +19,12 @@ public:
   : mName(str)
   {}
 
-  void Update(int message) final
-  {
-    std::cout << mName << " Received message " << message << std::endl;
+  void Update(int message) final {
+    /// C++14 required: generic lambda
+    auto genericLambdaFn = [this](const auto& message) {
+      std::cout<<mName<<": Received message: "<<message<<std::endl;
+    };
+    genericLambdaFn(message);
   }
 
 private:

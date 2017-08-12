@@ -29,7 +29,8 @@ namespace V1 {
 class IObserverInterface
 {
 public:
-  virtual ~IObserverInterface() {}
+  IObserverInterface() = default;
+  virtual ~IObserverInterface() = default;
   virtual void Update(int message) = 0;
 };
 

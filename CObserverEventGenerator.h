@@ -18,8 +18,8 @@ namespace V1 {
 /// \class CObserverTarget Observer implementation
 class CObserverEventGenerator {
 public:
-  CObserverEventGenerator();
-  virtual ~CObserverEventGenerator();
+  CObserverEventGenerator() = default;
+  virtual ~CObserverEventGenerator() = default;
 
   /// Add a new observer to the list of observers.
   virtual void Subscribe(int message, IObserverInterface *observer);
