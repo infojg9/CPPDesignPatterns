@@ -17,10 +17,10 @@ namespace V1 {
 class CSingleton {
 public:
   /// Return the single instance of this class
-  static CSingleton &GetInstanceV1();
+  static CSingleton& GetInstanceV1();
   template<typename Container>
   decltype(auto) GetInstanceV2(Container&& c);
-  static CSingleton &GetInstanceV3();
+  static CSingleton& GetInstanceV3();
 
   /// Return some class-specific single-instance state
   std::thread::id GetThreadId();

@@ -83,22 +83,26 @@ force_static_build()
 
 set(SOURCE_FILES
     # Added Pimple::V1 source
-    CPointerToImplementation.h
-    CPointerToImplementation.cpp
+    Pimple/CPointerToImplementation.h
+    Pimple/CPointerToImplementation.cpp
     # Added CSingleton::V1 source
-    CSingleton.h
-    CSingleton.cpp
+    Singleton/CSingleton.h
+    Singleton/CSingleton.cpp
     # Added Factory::V1 source
-    IFactoryInterface.h
-    CFactoryMaker.h
-    CFactoryMaker.cpp
-    CFactoryMakerConsumer.cpp
+    Factory/IFactoryInterface.h
+    Factory/CFactoryMaker.h
+    Factory/CFactoryMaker.cpp
+    Factory/CFactoryMakerConsumer.cpp
     # Added Observer::V1 source
-    IObserverInterface.h
-    CObserverEventGenerator.h
-    CObserverEventGenerator.cpp
-    CObserverConsumer.cpp
-    CObserverEventCollector.cpp
+    Observer/IObserverInterface.h
+    Observer/CObserverEventGenerator.h
+    Observer/CObserverEventGenerator.cpp
+    Observer/CObserverConsumer.cpp
+    Observer/CObserverEventCollector.cpp
+    # Added SignalSlot::V1 source
+    SignalSlot/CSignalSlotType1.h
+    SignalSlot/CSignalSlotImpl.cpp
+    # Test code: Gtest build support would be ideal
     main.cpp
     )
 

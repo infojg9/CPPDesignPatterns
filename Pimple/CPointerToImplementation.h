@@ -18,12 +18,6 @@
 
 #pragma once
 
-#ifdef _WIN32
-  #include <windows.h>
-#else
-  #include <sys/time.h>
-#endif
-
 #include <iostream>
 #include <string>
 #include <memory>
@@ -40,8 +34,9 @@ class CPointerToImplementation
 public:
   explicit CPointerToImplementation(std::string const& name);
   ~CPointerToImplementation();
-  CPointerToImplementation(CPointerToImplementation const&) = delete;
-  CPointerToImplementation& operator=(CPointerToImplementation const&) = delete;
+  /// Deep copy to be perforemed here
+  CPointerToImplementation(CPointerToImplementation const&);
+  CPointerToImplementation& operator=(CPointerToImplementation const&);
   CPointerToImplementation(CPointerToImplementation&&) = default;
   CPointerToImplementation& operator=(CPointerToImplementation&&) = default;
 

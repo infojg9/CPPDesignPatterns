@@ -25,8 +25,8 @@ public:
   Impl() = default;
   virtual ~Impl();
 
-  Impl(Impl const&) = delete;
-  Impl& operator=(Impl const&) = delete;
+  Impl(Impl const&) = default;
+  Impl& operator=(Impl const&) = default;
   Impl(Impl&&) = default;
   Impl& operator=(Impl&&) = default;
 
@@ -61,6 +61,19 @@ CPointerToImplementation::~CPointerToImplementation()
 
 CPointerToImplementation::ImplPtr&& CPointerToImplementation::getImplPtr() {
   return std::move(m_pImpl);
+}
+
+/// Allow explicit deep copy in copy constructor from rImpl object reference
+CPointerToImplementation::CPointerToImplementation(
+CPointerToImplementation const& rImpl)
+: m_pImpl(std::make_unique<Impl>(*rImpl.m_pImpl))
+{}
+
+/// Allow explicit deep copy in copy assignment operator from rImpl object reference
+CPointerToImplementation&
+CPointerToImplementation::operator=(CPointerToImplementation const& rImpl) {
+  *m_pImpl = *rImpl.m_pImpl;
+  return *this;
 }
 
 double CPointerToImplementation::Impl::GetElapsed() const

@@ -5,12 +5,13 @@
  * \copyright MIT/BSD Redistributable License
  */
 
-#include "CPointerToImplementation.h"
-#include "CSingleton.h"
-#include "CFactoryMaker.h"
-#include "CFactoryMakerConsumer.cpp"
-#include "CObserverEventCollector.cpp"
-#include "CObserverConsumer.cpp"
+#include "Pimple/CPointerToImplementation.h"
+#include "Singleton/CSingleton.h"
+#include "Factory/CFactoryMaker.h"
+#include "Factory/CFactoryMakerConsumer.cpp"
+#include "Observer/CObserverEventCollector.cpp"
+#include "Observer/CObserverConsumer.cpp"
+#include "SignalSlot/CSignalSlotImpl.cpp"
 
 /// Boost integration
 #include <boost/type_index.hpp>
@@ -142,18 +143,25 @@ int main()
   Observer::V1::CObserverConsumer obNotifier;
 
   ///Register each observer for CObserverConsumer events
-  obNotifier.Subscribe(static_cast<int>(Observer::V1::CObserverConsumer::Messages::Event1), &observer1);
-  obNotifier.Subscribe(static_cast<int>(Observer::V1::CObserverConsumer::Messages::Event1), &observer2);
-  obNotifier.Subscribe(static_cast<int>(Observer::V1::CObserverConsumer::Messages::Event2), &observer2);
-  obNotifier.Subscribe(static_cast<int>(Observer::V1::CObserverConsumer::Messages::Event3), &observer1);
-  obNotifier.Subscribe(static_cast<int>(Observer::V1::CObserverConsumer::Messages::Event3), &observer3);
+  obNotifier.Subscribe(static_cast<std::size_t>(Observer::V1::CObserverConsumer::Messages::Event1), &observer1);
+  obNotifier.Subscribe(static_cast<std::size_t>(Observer::V1::CObserverConsumer::Messages::Event1), &observer2);
+  obNotifier.Subscribe(static_cast<std::size_t>(Observer::V1::CObserverConsumer::Messages::Event2), &observer2);
+  obNotifier.Subscribe(static_cast<std::size_t>(Observer::V1::CObserverConsumer::Messages::Event3), &observer1);
+  obNotifier.Subscribe(static_cast<std::size_t>(Observer::V1::CObserverConsumer::Messages::Event3), &observer3);
 
   ///Finally let obNotifier dispatches Event1 and Event3 messages for
   /// observer1 and observer3
   cout << "Notify Event1:" << endl;
-  obNotifier.Notify(static_cast<int>(Observer::V1::CObserverConsumer::Messages::Event1));
+  obNotifier.Notify(static_cast<std::size_t>(Observer::V1::CObserverConsumer::Messages::Event1));
   cout << "Notify Event3:" << endl;
-  obNotifier.Notify(static_cast<int>(Observer::V1::CObserverConsumer::Messages::Event3));
+  obNotifier.Notify(static_cast<std::size_t>(Observer::V1::CObserverConsumer::Messages::Event3));
+
+  ///SignalSlot::V1 example
+  SignalSlot::V1::SignalSlotUser user1("User1"), user2("User2");
+  user1.m_eventId.connect_member(&user2, &SignalSlot::V1::SignalSlotUser::eventCollector);
+  user2.m_eventId.connect_member(&user1, &SignalSlot::V1::SignalSlotUser::eventCollector);
+  user1.m_eventId.emit("Message 1: Request");
+  user2.m_eventId.emit("Message 1: Reply");
 
   cout << "Exiting..." <<endl;
   return 0;
