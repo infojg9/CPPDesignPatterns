@@ -11,7 +11,9 @@
 #include "Factory/CFactoryMakerConsumer.cpp"
 #include "Observer/CObserverEventCollector.cpp"
 #include "Observer/CObserverConsumer.cpp"
-#include "SignalSlot/CSignalSlotImpl.cpp"
+#include "SignalSlotV1/CSignalSlotImpl.cpp"
+#include "SignalSlotV2/CSignalSlotType2.h"
+#include "Facade/CMakeFacade.h"
 
 /// Boost integration
 #include <boost/type_index.hpp>
@@ -156,12 +158,16 @@ int main()
   cout << "Notify Event3:" << endl;
   obNotifier.Notify(static_cast<std::size_t>(Observer::V1::CObserverConsumer::Messages::Event3));
 
-  ///SignalSlot::V1 example
+  ///SignalSlot::V1 signals.lot mechanism example
   SignalSlot::V1::SignalSlotUser user1("User1"), user2("User2");
   user1.m_eventId.connect_member(&user2, &SignalSlot::V1::SignalSlotUser::eventCollector);
   user2.m_eventId.connect_member(&user1, &SignalSlot::V1::SignalSlotUser::eventCollector);
   user1.m_eventId.emit("Message 1: Request");
   user2.m_eventId.emit("Message 1: Reply");
+
+  // Facade::V1 using Facade pattern
+  Facade::V1::CMakeFacade obFacade;
+  obFacade.Action1();
 
   cout << "Exiting..." <<endl;
   return 0;

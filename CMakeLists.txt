@@ -99,9 +99,15 @@ set(SOURCE_FILES
     Observer/CObserverEventGenerator.cpp
     Observer/CObserverConsumer.cpp
     Observer/CObserverEventCollector.cpp
-    # Added SignalSlot::V1 source
-    SignalSlot/CSignalSlotType1.h
-    SignalSlot/CSignalSlotImpl.cpp
+    # Added SignalSlotV1::V1 source
+    SignalSlotV1/CSignalSlotType1.h
+    SignalSlotV1/CSignalSlotImpl.cpp
+    # Added SignalSlotV1::V2 source
+    SignalSlotV2/CSignalSlotType2.h
+    # Added Facade
+    Facade/CMakeFacade.h
+    Facade/CCollectionClasses.cpp
+    Facade/CMakeFacade.cpp
     # Test code: Gtest build support would be ideal
     main.cpp
     )

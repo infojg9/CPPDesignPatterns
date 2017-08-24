@@ -20,10 +20,10 @@ class CSignalSlotType1 {
 
 public:
 
-  CSignalSlotType1() : current_id_(0) {}
+  CSignalSlotType1() : m_currentId(0) {}
 
   // copy creates new CSignalSlotType1
-  CSignalSlotType1(CSignalSlotType1 const& other) : current_id_(0) {}
+  CSignalSlotType1(CSignalSlotType1 const& other) : m_currentId(0) {}
 
   // connects a member function to this CSignalSlotType1
   template <typename T>
@@ -33,7 +33,7 @@ public:
     });
   }
 
-  // connects a const member function to this CSignalSlotType1
+  // connects to CSignalSlotType1
   template <typename T>
   int connect_member(T *inst, void (T::*func)(Params...) const) {
     return connect([=](Params... params) {
@@ -41,38 +41,37 @@ public:
     });
   }
 
-  // connects a std::function to the CSignalSlotType1. The returned
-  // value can be used to disconnect the function again
+  // connects with std::function to CSignalSlotType1
   int connect(std::function<void(Params...)> const& slot) const {
-    slots_.insert(std::make_pair(++current_id_, slot));
-    return current_id_;
+    m_slotToFptrMap.insert(std::make_pair(++m_currentId, slot));
+    return m_currentId;
   }
 
-  // disconnects a previously connected function
+  /// disconnects from connected function
   void disconnect(int id) const {
-    slots_.erase(id);
+    m_slotToFptrMap.erase(id);
   }
 
-  // disconnects all previously connected functions
+  /// For all disconnection of connected functions
   void disconnect_all() const {
-    slots_.clear();
+    m_slotToFptrMap.clear();
   }
 
-  // calls all connected functions
+  /// Calling all connected functions
   void emit(Params... p) {
-    for(auto it : slots_) {
+    for(auto it : m_slotToFptrMap) {
       it.second(p...);
     }
   }
 
-  // assignment creates new CSignalSlotType1
+  // Assignment always creates new CSignalSlotType1 type
   CSignalSlotType1& operator=(CSignalSlotType1 const& other) {
     disconnect_all();
   }
 
 private:
-  mutable std::map<int, std::function<void(Params...)>> slots_;
-  mutable int current_id_;
+  mutable std::map<int, std::function<void(Params...)>> m_slotToFptrMap;
+  mutable int m_currentId;
 };
 
 } /// namespace V1
