@@ -32,7 +32,11 @@ CMake g++ compiler output:
 [ 20%] Building CXX object CMakeFiles/CDesignPatterns.dir/Pimple/CPointerToImplementation.cpp.o
 [ 20%] Building CXX object CMakeFiles/CDesignPatterns.dir/Singleton/CSingleton.cpp.o
 Using built-in specs.
+
 ...
+...
+...
+
 [100%] Built target CDesignPatterns
 
 
